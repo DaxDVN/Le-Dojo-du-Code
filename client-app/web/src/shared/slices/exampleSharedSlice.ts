@@ -1,0 +1,1 @@
+﻿// this is example when use redux

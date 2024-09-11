@@ -7,13 +7,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="web\src\assets\images\" />
-    <Folder Include="web\src\features\" />
-    <Folder Include="web\src\locales\" />
-    <Folder Include="web\src\shared\components\" />
-    <Folder Include="web\src\shared\hooks\" />
-    <Folder Include="web\src\shared\services\" />
-    <Folder Include="web\src\shared\slices\" />
-    <Folder Include="web\src\shared\utils\" />
-    <Folder Include="web\src\styles\" />
   </ItemGroup>
 </Project>
