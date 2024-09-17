@@ -1,7 +1,7 @@
 import {Button} from "flowbite-react";
 import google_icon from "../../../assets/images/google.svg";
-import AuthFields from "../components/AuthFields.tsx";
-import AuthButton from "../components/AuthButton.tsx";
+import FormInput from "../components/FormInput.tsx";
+import FormButton from "../components/FormButton.tsx";
 
 import {ErrorMessage, Form, Formik} from 'formik';
 import {loginValidationSchema} from "../utils/authValidationSchema.ts";
@@ -24,7 +24,7 @@ export default function LoginPage() {
 
                             {/*Phone number or email*/}
                             <div>
-                                <AuthFields
+                                <FormInput
                                     name="phoneNumberOrEmail"
                                     onChange={handleChange}
                                     value={values.phoneNumberOrEmail}
@@ -41,7 +41,7 @@ export default function LoginPage() {
 
                             {/*Password*/}
                             <div>
-                                <AuthFields
+                                <FormInput
                                     name="password"
                                     onChange={handleChange}
                                     value={values.password} type={"password"} text={"Password"}
@@ -61,7 +61,7 @@ export default function LoginPage() {
                             </div>
 
                             {/*Button submit to login*/}
-                            <AuthButton text={"Log In"}/>
+                            <FormButton text={"Log In"}/>
 
                             {/*Other options*/}
                             <div className="flex items-center">

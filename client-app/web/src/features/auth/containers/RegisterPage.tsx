@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {Button} from "flowbite-react";
 import google_icon from "../../../assets/images/google.svg";
-import AuthFields from "../components/AuthFields.tsx";
-import AuthButton from "../components/AuthButton.tsx";
+import FormInput from "../components/FormInput.tsx";
+import FormButton from "../components/FormButton.tsx";
 import {registerValidationSchema, loginValidationSchema} from "../utils/authValidationSchema.ts";
 
 import {ErrorMessage, Form, Formik} from 'formik';
@@ -46,7 +46,7 @@ export default function RegisterPage() {
                             <Form className="space-y-4">
                                 {/* Full Name */}
                                 <div>
-                                    <AuthFields
+                                    <FormInput
                                         text={"Full name"}
                                         type={"text"}
                                         name="fullName"
@@ -64,7 +64,7 @@ export default function RegisterPage() {
 
                                 {/* Phone number or email */}
                                 <div>
-                                    <AuthFields
+                                    <FormInput
                                         text={"Phone number or email"}
                                         type={"text"}
                                         name="phoneNumberOrEmail"
@@ -83,7 +83,7 @@ export default function RegisterPage() {
                                 <div>
                                     {/* Password */}
                                     <div>
-                                        <AuthFields
+                                        <FormInput
                                             text={"Password"}
                                             type={"password"}
                                             name="password"
@@ -101,7 +101,7 @@ export default function RegisterPage() {
                                     {/* Date of Birth */}
                                     <div>
                                         <span className="text-black text-[12px] block ml-2">Date of Birth</span>
-                                        <AuthFields
+                                        <FormInput
                                             text={"Date of Birth"}
                                             type={"date"}
                                             name="dateOfBirth"
@@ -155,7 +155,7 @@ export default function RegisterPage() {
                             </Form>
                         )}
                     </Formik>
-                    <AuthButton text={"Sign Up"} />
+                    <FormButton text={"Sign Up"} />
 
                     {/*Other options*/}
                     <div className="flex items-center mt-4 mb-4">
@@ -199,7 +199,7 @@ export default function RegisterPage() {
 
                                 {/* Phone number or email */}
                                 <div>
-                                    <AuthFields
+                                    <FormInput
                                         text={"Phone number or email"}
                                         type={"text"}
                                         name="phoneNumberOrEmail"
@@ -217,7 +217,7 @@ export default function RegisterPage() {
 
                                 {/* Password */}
                                 <div>
-                                    <AuthFields
+                                    <FormInput
                                         text={"Password"}
                                         type={"password"}
                                         name="password"
@@ -240,7 +240,7 @@ export default function RegisterPage() {
                                 </div>
 
                                 {/*Button submit to login*/}
-                                <AuthButton text={"Log In"}/>
+                                <FormButton text={"Log In"}/>
 
                                 {/*Other options*/}
                                 <div className="flex items-center">

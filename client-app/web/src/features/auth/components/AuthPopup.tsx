@@ -1,5 +1,5 @@
 import complete from '../../../assets/images/complete.svg'
-import AuthButton from '../../auth/components/AuthButton.tsx';
+import FormButton from './FormButton.tsx';
 
 export default function AuthPopup() {
 
@@ -13,7 +13,7 @@ export default function AuthPopup() {
                         Success! Your email has been verified.
                     </p>
                 </div>
-                <AuthButton text='Continue'/>
+                <FormButton text='Continue'/>
             </div>
         </div>
     );

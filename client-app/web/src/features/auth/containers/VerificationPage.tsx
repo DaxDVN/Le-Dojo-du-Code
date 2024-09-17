@@ -1,4 +1,4 @@
-import AuthFields from "../components/AuthFields.tsx";
+import FormInput from "../components/FormInput.tsx";
 
 export default function VerificationPage() {
 
@@ -15,7 +15,7 @@ export default function VerificationPage() {
                         We've sent an email to {email} with instructions.
                     </p>
                 </div>
-                <AuthFields text='Enter code'/>
+                <FormInput text='Enter code'/>
                 <span className='text-black'>
                     Didn't receive an email? <a href='#' className='text-[#D96E48]'>Resend email</a>
                 </span>

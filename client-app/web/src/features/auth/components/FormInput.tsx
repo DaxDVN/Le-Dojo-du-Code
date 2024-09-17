@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function AuthFields({text, type,name, ...props }) {
+function FormInput({text, type,name, ...props }) {
     const [value, setValue] = useState("");
 
     const handleChange = (event) => {
@@ -27,4 +27,4 @@ function AuthFields({text, type,name, ...props }) {
     );
 }
 
-export default AuthFields;
+export default FormInput;

@@ -9,3 +9,8 @@ export interface GenderCheckBoxProps {
     gender: string,
     value: string
 }
+
+export interface OverlayProps {
+    overlay?: boolean,
+    setOverlay?: ()=> void
+}
