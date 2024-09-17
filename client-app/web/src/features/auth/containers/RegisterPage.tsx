@@ -27,7 +27,7 @@ export default function RegisterPage() {
                     <AuthOverlay onSetValue={setOverlay} text={"Don't have an account?"} value={"Sign up"}/>
                 )}
                 <div className="w-full p-6 max-w-sm bg-white rounded-lg shadow-md rounded-r-none">
-                    <h1 className="text-center font-semibold text-black text-4xl m-8">Sign up</h1>
+                    <h1 className="text-center font-semibold text-black text-4xl mb-8">Sign up</h1>
                     <Formik
                         initialValues={{
                             fullName: '',
@@ -59,7 +59,7 @@ export default function RegisterPage() {
                                         }
                                     />
                                     <ErrorMessage name="fullName" component="div"
-                                                  className="text-red-500 text-sm mb-2"/>
+                                                  className="text-red-500 text-[12px] mb-2"/>
                                 </div>
 
                                 {/* Phone number or email */}
@@ -77,99 +77,102 @@ export default function RegisterPage() {
                                         }
                                     />
                                     <ErrorMessage name="phoneNumberOrEmail" component="div"
-                                                  className="text-red-500 text-sm mb-2"/>
+                                                  className="text-red-500 text-[12px] mb-2"/>
                                 </div>
 
-                                {/* Password */}
                                 <div>
-                                    <AuthFields
-                                        text={"Password"}
-                                        type={"password"}
-                                        name="password"
-                                        onChange={handleChange}
-                                        value={values.password}
-                                        className={
-                                            errors.password && touched.password
-                                                ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
-                                                : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
-                                        }
-                                    />
-                                    <ErrorMessage name="password" component="div"
-                                                  className="text-red-500 text-sm mb-2"/>
-                                </div>
-
-                                {/* Date of Birth */}
-                                <div>
-                                    <span className="text-black text-[12px] block ml-2 mb-1">Date of Birth</span>
-                                    <AuthFields
-                                        text={"Date of Birth"}
-                                        type={"date"}
-                                        name="dateOfBirth"
-                                        onChange={handleChange}
-                                        value={values.dateOfBirth}
-                                        className={
-                                            errors.dateOfBirth && touched.dateOfBirth
-                                                ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
-                                                : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
-                                        }
-
-                                    />
-                                    <ErrorMessage name="dateOfBirth" component="div"
-                                                  className="text-red-500 text-sm mb-2"/>
-                                </div>
-
-                                {/* Gender */}
-                                <div>
-                                    <span className="text-black text-[12px] block ml-2 mb-1">Select Gender</span>
-                                    <select name="gender"
+                                    {/* Password */}
+                                    <div>
+                                        <AuthFields
+                                            text={"Password"}
+                                            type={"password"}
+                                            name="password"
                                             onChange={handleChange}
-                                            value={values.gender}
-                                           className={`text-black bg-[#E9ECEF] w-full p-2 border rounded-lg ${errors.gender && touched.gender
-                                               ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
-                                               : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
-                                           }}`}>
-                                        <option value="">Select gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                    <ErrorMessage name="gender" component="div" className="text-red-500 text-sm mb-2"/>
-                                </div>
-
-                                {/*Agreement*/}
-                                <div>
-                                    <div className="flex w-full items-center space-x-2">
-                                        <input type="checkbox" name="agreement"
-                                               onChange={handleChange}
-                                               checked={values.agreement}
-                                               className="form-checkbox text-blue-600"/>
-                                        <span className="text-black text-[12px] py-2">I agree to <a href="#">the Terms of Service</a>, <a
-                                            href="#">Privacy Policy</a>, and <a href="#">Cookie Policy</a></span>
+                                            value={values.password}
+                                            className={
+                                                errors.password && touched.password
+                                                    ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
+                                                    : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+                                            }
+                                        />
+                                        <ErrorMessage name="password" component="div"
+                                                      className="text-red-500 text-[12px] mb-2"/>
                                     </div>
-                                    <ErrorMessage name="agreement" component="div"
-                                                  className="text-red-500 text-sm mb-2"/>
+                                    {/* Date of Birth */}
+                                    <div>
+                                        <span className="text-black text-[12px] block ml-2">Date of Birth</span>
+                                        <AuthFields
+                                            text={"Date of Birth"}
+                                            type={"date"}
+                                            name="dateOfBirth"
+                                            onChange={handleChange}
+                                            value={values.dateOfBirth}
+                                            className={
+                                                errors.dateOfBirth && touched.dateOfBirth
+                                                    ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
+                                                    : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+                                            }
 
-                                </div>
-                                <AuthButton text={"Sign Up"}/>
-                                {/*Other options*/}
-                                <div className="flex items-center">
-                                    <span className="flex-grow border-t border-gray-300"></span>
-                                    <p className="text-center text-black text-[12px] ">Or Sign Up Using</p>
-                                    <span className="flex-grow border-t border-gray-300"></span>
+                                        />
+                                        <ErrorMessage name="dateOfBirth" component="div"
+                                                      className="text-red-500 text-[12px] mb-2"/>
+                                    </div>
+
+                                    {/* Gender */}
+                                    <div>
+                                        <span className="text-black text-[12px] block ml-2 ">Select Gender</span>
+                                        <select name="gender"
+                                                onChange={handleChange}
+                                                value={values.gender}
+                                                className={`text-black bg-[#E9ECEF] w-full p-2 border rounded-lg ${errors.gender && touched.gender
+                                                    ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
+                                                    : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+                                                }}`}>
+                                            <option value="">Select gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <ErrorMessage name="gender" component="div" className="text-red-500 text-[12px] mb-2"/>
+                                    </div>
+
+                                    {/*Agreement*/}
+                                    <div>
+                                        <div className="flex w-full items-center space-x-2">
+                                            <input type="checkbox" name="agreement"
+                                                   onChange={handleChange}
+                                                   checked={values.agreement}
+                                                   className="form-checkbox text-blue-600"/>
+                                            <span className="text-black text-[12px] py-2">I agree to <a href="#">the Terms of Service</a>, <a
+                                                href="#">Privacy Policy</a>, and <a href="#">Cookie Policy</a></span>
+                                        </div>
+                                        <ErrorMessage name="agreement" component="div"
+                                                      className="text-red-500 text-[12px] mb-2"/>
+
+                                    </div>
                                 </div>
 
-                                {/*Button submit to sign up with Google*/}
-                                <Button
-                                    color="#D96E48"
-                                    pill
-                                    className="w-full p-0 border-none flex items-center bg-[#E9ECEF] justify-center hover:bg-[#f1f3f5]"
-                                >
-                                    <img src={google_icon} alt="Google icon" className="mr-1 h-10 w-10"/>
-                                    <span className="text-[#000000] flex items-center">Continue with Google</span>
-                                </Button>
                             </Form>
                         )}
                     </Formik>
+                    <AuthButton text={"Sign Up"} />
+
+                    {/*Other options*/}
+                    <div className="flex items-center mt-4 mb-4">
+                        <span className="flex-grow border-t border-gray-300"></span>
+                        <p className="text-center text-black text-[12px] ">Or Sign Up Using</p>
+                        <span className="flex-grow border-t border-gray-300"></span>
+                    </div>
+
+                    {/*Button submit to sign up with Google*/}
+                    <Button
+                        color="#D96E48"
+                        pill
+                        className="w-full p-0 border-none flex items-center bg-[#E9ECEF] justify-center hover:bg-[#f1f3f5]"
+                    >
+                        <img src={google_icon} alt="Google icon" className="mr-1 h-10 w-10"/>
+                        <span className="text-[#000000] flex items-center">Continue with Google</span>
+                    </Button>
 
 
                 </div>
@@ -209,7 +212,7 @@ export default function RegisterPage() {
                                         }
                                     />
                                     <ErrorMessage name="phoneNumberOrEmail" component="div"
-                                                  className="text-red-500 text-sm mb-2"/>
+                                                  className="text-red-500 text-[12px] mb-2"/>
                                 </div>
 
                                 {/* Password */}
@@ -227,13 +230,13 @@ export default function RegisterPage() {
                                         }
                                     />
                                     <ErrorMessage name="password" component="div"
-                                                  className="text-red-500 text-sm mb-2"/>
+                                                  className="text-red-500 text-[12px] mb-2"/>
                                 </div>
 
                                 {/*Remember me*/}
                                 <div className="flex items-center">
                                     <input type="checkbox" className="mr-2 "/>
-                                    <span className="text-[#495057] text-sm">Remember me</span>
+                                    <span className="text-[#495057] text-[12px]">Remember me</span>
                                 </div>
 
                                 {/*Button submit to login*/}
@@ -242,7 +245,7 @@ export default function RegisterPage() {
                                 {/*Other options*/}
                                 <div className="flex items-center">
                                     <span className="flex-grow border-t border-gray-300"></span>
-                                    <p className="text-center text-black text-sm mx-4">Or Log In Using</p>
+                                    <p className="text-center text-black text-[12px] mx-4">Or Log In Using</p>
                                     <span className="flex-grow border-t border-gray-300"></span>
                                 </div>
 
@@ -262,7 +265,7 @@ export default function RegisterPage() {
 
                     {/*Forgot password*/}
                     <p className="text-center mt-6">
-                        <a href="#" className=" text-[#D96E48] hover:text-[#f29849] hover:no-underline">
+                        <a href="#" className="text-[12px] text-[#D96E48] hover:text-[#f29849] hover:no-underline">
                             Forgot password?
                         </a>
                     </p>

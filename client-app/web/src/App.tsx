@@ -31,8 +31,8 @@ function App() {
             </p>
             <RegisterPage/>
             <LoginPage/>
-            <VerificationPage/>
-            <AuthPopup/>
+            {/*<VerificationPage/>*/}
+            {/*<AuthPopup/>*/}
         </>
     )
 }
