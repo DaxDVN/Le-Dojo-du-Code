@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function InputComponent({text, type,name, ...props }) {
+function AuthFields({text, type,name, ...props }) {
     const [value, setValue] = useState("");
 
     const handleChange = (event) => {
@@ -27,4 +27,4 @@ function InputComponent({text, type,name, ...props }) {
     );
 }
 
-export default InputComponent;
+export default AuthFields;

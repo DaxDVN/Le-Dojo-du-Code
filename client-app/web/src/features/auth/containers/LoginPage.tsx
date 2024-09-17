@@ -1,46 +1,20 @@
 import {Button} from "flowbite-react";
-import google_icon from "../../../../assets/images/google.svg";
-import InputComponent from "../../components/InputComponent.tsx";
-import AuthButtonComponent from "../../components/AuthButtonComponent.tsx";
+import google_icon from "../../../assets/images/google.svg";
+import AuthFields from "../components/AuthFields.tsx";
+import AuthButton from "../components/AuthButton.tsx";
 
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import {ErrorMessage, Form, Formik} from 'formik';
+import {loginValidationSchema} from "../utils/authValidationSchema.ts";
 
 // Create schema
-const validationSchema = Yup.object().shape({
-
-    // Phone number or email
-    phoneNumberOrEmail: Yup.string()
-        .test(
-            'phone-or-email',
-            'Invalid phone number or email address.',
-            (value) => {
-                if (value?.includes('@')) {
-                    return Yup.string().email('Invalid email address.').isValidSync(value);
-                } else {
-                    return Yup.string().min(10,'Invalid phone number.').matches(/^\+?[0-9]\d{1,14}$/, 'Số điện thoại không hợp lệ').isValidSync(value);
-                }
-            }
-        )
-        .required('Phone number or email is required.'),
-
-    // Password
-    password: Yup.string()
-        .min(6,)    //'Your password must be at least 6 characters long.'
-        .matches(/[A-Z]/, )     //'Password requires at least one uppercase character.'
-        .matches(/\d/, )    //'Password requires at least one number.'
-        .matches(/[!@#$%^&*(),.?":{}|<>]/, ) //'Password requires at least one special character.'
-        .required('Password is required.'),
-});
 export default function LoginPage() {
 
     return (
         <div className="flex items-center justify-center h-full">
             <div className="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
                 <h1 className="text-center font-semibold text-black text-4xl m-8">Log In</h1>
-                <Formik
-                        initialValues={{phoneNumberOrEmail: '', password: ''}}
-                        validationSchema={validationSchema}
+                <Formik initialValues={{phoneNumberOrEmail: '', password: ''}}
+                        validationSchema={loginValidationSchema}
                         onSubmit={(values) => {
                             console.log(values);
                         }}
@@ -50,14 +24,14 @@ export default function LoginPage() {
 
                             {/*Phone number or email*/}
                             <div>
-                                <InputComponent
+                                <AuthFields
                                     name="phoneNumberOrEmail"
                                     onChange={handleChange}
                                     value={values.phoneNumberOrEmail}
                                     type={"text"}
                                     text={"Phone number or email"}
                                     className={
-                                        errors.password && touched.password
+                                        errors.phoneNumberOrEmail && touched.phoneNumberOrEmail
                                             ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
                                             : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
                                     }/>
@@ -67,7 +41,7 @@ export default function LoginPage() {
 
                             {/*Password*/}
                             <div>
-                                <InputComponent
+                                <AuthFields
                                     name="password"
                                     onChange={handleChange}
                                     value={values.password} type={"password"} text={"Password"}
@@ -87,7 +61,7 @@ export default function LoginPage() {
                             </div>
 
                             {/*Button submit to login*/}
-                            <AuthButtonComponent text={"Log In"}/>
+                            <AuthButton text={"Log In"}/>
 
                             {/*Other options*/}
                             <div className="flex items-center">

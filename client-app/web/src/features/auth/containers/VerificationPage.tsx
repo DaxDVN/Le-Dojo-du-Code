@@ -1,8 +1,7 @@
-import mailIcon from '../../../../assets/images/e-mail.svg'
-import {Button} from "flowbite-react";
-import AuthButtonComponent from "../../components/AuthButtonComponent.tsx";
+import mailIcon from '../../../assets/images/e-mail.svg'
+import AuthButton from "../components/AuthButton.tsx";
 
-export default function VerifyPage(props) {
+export default function VerificationPage() {
 
     const email = 'ducnguyen7925@gmail.com'
 
@@ -16,7 +15,7 @@ export default function VerifyPage(props) {
                     We've sent an email to {email}  with instructions.
                 </span>
                 <a href='https://mail.google.com/'>
-                    <AuthButtonComponent>Verify Email</AuthButtonComponent>
+                    <AuthButton text={"Verify Email"}></AuthButton>
                 </a>
 
             </div>

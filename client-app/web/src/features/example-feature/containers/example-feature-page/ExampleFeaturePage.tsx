@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 
-function ExampleFeaturePage(props) {
+function ExampleFeaturePage() {
     return (
         <div></div>
     );

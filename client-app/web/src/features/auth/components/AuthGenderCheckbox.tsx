@@ -1,6 +1,7 @@
 import React from 'react';
+import {GenderCheckBoxProps} from "../interfaces/CommonProps.ts";
 
-function GenderCheckboxComponent({gender,value}) {
+function AuthGenderCheckbox({gender,value}: GenderCheckBoxProps) {
     return (
         <label className="flex-1 flex items-center space-x-2 border border-gray-300 rounded-lg p-2 text-center">
             <span className="text-gray-700">{gender}</span>
@@ -9,4 +10,4 @@ function GenderCheckboxComponent({gender,value}) {
     );
 }
 
-export default GenderCheckboxComponent;
+export default AuthGenderCheckbox;
