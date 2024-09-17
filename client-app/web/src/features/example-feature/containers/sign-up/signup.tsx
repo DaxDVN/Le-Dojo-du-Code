@@ -83,7 +83,7 @@ export default function SignUpPage() {
     const [isSignUpClicked, setIsSignUpClicked] = useState(false);
 
     return (
-        <div className="grid grid-cols-2 h-full p-4">
+        <div className="absolute mt-6 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 grid grid-cols-2 h-full p-4">
             {/* Sign Up */}
             <div className="flex items-center justify-center relative">
 
@@ -165,7 +165,7 @@ export default function SignUpPage() {
 
                                 {/* Date of Birth */}
                                 <div>
-                                    <span className="text-black block ml-2 mb-1">Date of Birth</span>
+                                    <span className="text-black text-[12px] block ml-2 mb-1">Date of Birth</span>
                                     <InputComponent
                                         text={"Date of Birth"}
                                         type={"date"}
@@ -185,7 +185,7 @@ export default function SignUpPage() {
 
                                 {/* Gender */}
                                 <div>
-                                    <span className="text-black block ml-2 mb-2">Select Gender</span>
+                                    <span className="text-black text-[12px] block ml-2 mb-1">Select Gender</span>
                                     <select name="gender"
                                             onChange={handleChange}
                                             value={values.gender}
@@ -208,7 +208,7 @@ export default function SignUpPage() {
                                                onChange={handleChange}
                                                checked={values.agreement}
                                                className="form-checkbox text-blue-600"/>
-                                        <span className="text-black text-sm py-2">I agree to <a href="#">the Terms of Service</a>, <a
+                                        <span className="text-black text-[12px] py-2">I agree to <a href="#">the Terms of Service</a>, <a
                                             href="#">Privacy Policy</a>, and <a href="#">Cookie Policy</a></span>
                                     </div>
                                     <ErrorMessage name="agreement" component="div"
@@ -219,7 +219,7 @@ export default function SignUpPage() {
                                 {/*Other options*/}
                                 <div className="flex items-center">
                                     <span className="flex-grow border-t border-gray-300"></span>
-                                    <p className="text-center text-black text-sm mx-4 ">Or Sign Up Using</p>
+                                    <p className="text-center text-black text-[12px] ">Or Sign Up Using</p>
                                     <span className="flex-grow border-t border-gray-300"></span>
                                 </div>
 
