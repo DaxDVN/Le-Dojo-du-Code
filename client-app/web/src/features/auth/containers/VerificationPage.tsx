@@ -18,6 +18,7 @@ export default function VerificationPage() {
                     <AuthButton text={"Verify Email"}></AuthButton>
                 </a>
 
+                <a href={'#'} className='text-[#D96E48]'>Return to Login</a>
             </div>
         </div>
     );

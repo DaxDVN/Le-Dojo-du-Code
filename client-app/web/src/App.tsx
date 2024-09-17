@@ -5,6 +5,10 @@ import './styles/App.css'
 import LoginPage from "./features/auth/containers/LoginPage.tsx";
 import RegisterPage from "./features/auth/containers/RegisterPage.tsx";
 import VerificationPage from "./features/auth/containers/VerificationPage.tsx";
+import LoginPage from "./features/example-feature/containers/login/login.tsx";
+import SignUpPage from "./features/example-feature/containers/sign-up/signup.tsx";
+import VerifyPage from "./features/example-feature/containers/sign-up/VerifyPage.tsx";
+import SignUpSuccess from "./features/example-feature/containers/sign-up/SignUpSuccess.tsx";
 
 function App() {
     const [count, setCount] = useState(0)
@@ -31,6 +35,10 @@ function App() {
             <RegisterPage/>
             <LoginPage/>
             <VerificationPage/>
+            {/*<SignUpPage/>*/}
+            {/*<LoginPage/>*/}
+            {/*<VerifyPage/>*/}
+            <SignUpSuccess/>
         </>
     )
 }
