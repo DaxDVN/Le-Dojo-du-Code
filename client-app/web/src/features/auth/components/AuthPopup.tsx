@@ -1,8 +1,7 @@
-import complete from '../../../../assets/images/complete.svg'
-import AuthButtonComponent from '../../components/AuthButtonComponent.tsx';
-import InputComponent from "../../components/InputComponent.tsx";
+import complete from '../../../assets/images/complete.svg'
+import AuthButton from '../../auth/components/AuthButton.tsx';
 
-export default function SignUpSuccess(props) {
+export default function AuthPopup() {
 
     return (
         <div className="absolute inset-0 flex items-center justify-center">
@@ -14,7 +13,7 @@ export default function SignUpSuccess(props) {
                         Success! Your email has been verified.
                     </p>
                 </div>
-                <AuthButtonComponent text='Continue'/>
+                <AuthButton text='Continue'/>
             </div>
         </div>
     );

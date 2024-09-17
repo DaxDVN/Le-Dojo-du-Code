@@ -3,10 +3,10 @@ import {Button} from "flowbite-react";
 import google_icon from "../../../assets/images/google.svg";
 import AuthFields from "../components/AuthFields.tsx";
 import AuthButton from "../components/AuthButton.tsx";
-import AuthOverlayComponent from "../components/AuthOverlay.tsx";
-import {registerValidationSchema} from "../utils/authValidationSchema.ts";
+import {registerValidationSchema, loginValidationSchema} from "../utils/authValidationSchema.ts";
 
 import {ErrorMessage, Form, Formik} from 'formik';
+import AuthOverlay from "../components/AuthOverlay.tsx";
 
 export default function RegisterPage() {
 
@@ -16,7 +16,6 @@ export default function RegisterPage() {
         setIsOverlay(!isOverlay);
     };
 
-    const [isSignUpClicked, setIsSignUpClicked] = useState(false);
 
     return (
         <div className="absolute mt-6 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 grid grid-cols-2 h-full p-4">
@@ -25,7 +24,7 @@ export default function RegisterPage() {
 
                 {/*Overlay execution*/}
                 {!isOverlay && (
-                    <AuthOverlayComponent onSetValue={setOverlay} text={"Don't have an account?"} value={"Sign up"}/>
+                    <AuthOverlay onSetValue={setOverlay} text={"Don't have an account?"} value={"Sign up"}/>
                 )}
                 <div className="w-full p-6 max-w-sm bg-white rounded-lg shadow-md rounded-r-none">
                     <h1 className="text-center font-semibold text-black text-4xl m-8">Sign up</h1>
@@ -181,7 +180,7 @@ export default function RegisterPage() {
 
                 {/*Overlay execution*/}
                 {isOverlay && (
-                    <AuthOverlayComponent onSetValue={setOverlay} text={"Have an account?"} value={"Log in"}/>
+                    <AuthOverlay onSetValue={setOverlay} text={"Have an account?"} value={"Log in"}/>
                 )}
 
                 <div className="w-full max-w-sm p-6 bg-white rounded-lg rounded-l-none h-full shadow-md items-center">

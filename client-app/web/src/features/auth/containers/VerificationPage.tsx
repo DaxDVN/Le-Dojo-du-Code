@@ -1,4 +1,4 @@
-import mailIcon from '../../../assets/images/e-mail.svg'
+import mailIcon from '../../../assets/images/mail.svg'
 import AuthButton from "../components/AuthButton.tsx";
 
 export default function VerificationPage() {
