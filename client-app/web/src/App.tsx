@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './styles/App.css'
 import LoginPage from "./features/example-feature/containers/login/login.tsx";
 import SignUpPage from "./features/example-feature/containers/sign-up/signup.tsx";
+import VerifyPage from "./features/example-feature/containers/sign-up/VerifyPage.tsx";
 
 function App() {
     const [count, setCount] = useState(0)
@@ -29,6 +30,7 @@ function App() {
             </p>
             <SignUpPage/>
             <LoginPage/>
+            <VerifyPage/>
         </>
     )
 }

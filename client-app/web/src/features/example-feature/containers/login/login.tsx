@@ -45,7 +45,7 @@ export default function LoginPage() {
                             console.log(values);
                         }}
                 >
-                    {({ handleChange, values }) => (
+                    {({ handleChange, values,errors, touched }) => (
                         <Form className="space-y-4">
 
                             {/*Phone number or email*/}
@@ -55,7 +55,12 @@ export default function LoginPage() {
                                     onChange={handleChange}
                                     value={values.phoneNumberOrEmail}
                                     type={"text"}
-                                    text={"Phone number or email"}/>
+                                    text={"Phone number or email"}
+                                    className={
+                                        errors.password && touched.password
+                                            ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
+                                            : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+                                    }/>
                                 <ErrorMessage name="phoneNumberOrEmail" component="div"
                                               className="text-red-500 text-sm mb-2"/>
                             </div>
@@ -65,7 +70,12 @@ export default function LoginPage() {
                                 <InputComponent
                                     name="password"
                                     onChange={handleChange}
-                                    value={values.password} type={"password"} text={"Password"}/>
+                                    value={values.password} type={"password"} text={"Password"}
+                                    className={
+                                        errors.password && touched.password
+                                            ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
+                                            : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+                                    }/>
                                 <ErrorMessage name="password" component="div"
                                               className="text-red-500 text-sm mb-2"/>
                             </div>

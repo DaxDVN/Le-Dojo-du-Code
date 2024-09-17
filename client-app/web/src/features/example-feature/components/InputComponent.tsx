@@ -23,6 +23,7 @@ function InputComponent({text, type,name, ...props }) {
             placeholder={text}
             {...props}
         />
+
     );
 }
 

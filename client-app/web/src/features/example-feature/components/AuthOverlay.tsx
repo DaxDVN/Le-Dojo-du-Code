@@ -10,7 +10,7 @@ function AuthOverlay({setIsOverlay, text,value}) {
                 <div className="absolute inset-0 flex flex-col space-y-4 items-center justify-center font-bold bg-[#D96E48]  rounded-lg">
                     <span>{text}</span>
                     <Button onClick={setIsOverlay}
-                            className="text-[#D96E48] bg-white px-4 py-2 rounded-lg shadow-md ">{value}</Button>
+                            className="text-[#D96E48] bg-white px-4 py-2 rounded-lg shadow-md hover:bg-[#e9ecef]">{value}</Button>
                 </div>
 
         </div>

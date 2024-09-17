@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { Button } from "flowbite-react";
+import {useState} from "react";
+import {Button} from "flowbite-react";
 import google_icon from "../../../../assets/images/google.svg";
 import InputComponent from "../../components/InputComponent.tsx";
 import AuthButtonComponent from "../../components/AuthButtonComponent.tsx";
 import AuthOverlay from "../../components/AuthOverlay.tsx";
 
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+
+import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -30,7 +31,7 @@ const validationSchema = Yup.object().shape({
                 if (value?.includes('@')) {
                     return Yup.string().email('Invalid email address.').isValidSync(value);
                 } else {
-                    return Yup.string().min(10,'Invalid phone number.').matches(/^\+?[0-9]\d{1,14}$/, 'Số điện thoại không hợp lệ').isValidSync(value);
+                    return Yup.string().min(10, 'Invalid phone number.').matches(/^\+?[0-9]\d{1,14}$/, 'Số điện thoại không hợp lệ').isValidSync(value);
                 }
             }
         )
@@ -38,7 +39,7 @@ const validationSchema = Yup.object().shape({
 
     // Password
     password: Yup.string()
-        .min(6,'Your password must be at least 6 characters long.')
+        .min(6, 'Your password must be at least 6 characters long.')
         .matches(/[A-Z]/, 'Password requires at least one uppercase character.')
         .matches(/\d/, 'Password requires at least one number.')
         .matches(/[!@#$%^&*(),.?":{}|<>]/, 'Password requires at least one special character.')
@@ -67,31 +68,46 @@ const validationSchema = Yup.object().shape({
     gender: Yup.string()
         .oneOf(['male', 'female', 'other'], 'Invalid gender selection.')
         .required('Gender is required.'),
+    agreement: Yup.boolean()
+        .oneOf([true], 'You must accept the terms and conditions to proceed.')
 });
 
 export default function SignUpPage() {
+
+    // Overlay
     const [isOverlay, setIsOverlay] = useState(true);
     const setOverlay = () => {
         setIsOverlay(!isOverlay);
     };
 
+    const [isSignUpClicked, setIsSignUpClicked] = useState(false);
+
     return (
         <div className="grid grid-cols-2 h-full p-4">
             {/* Sign Up */}
             <div className="flex items-center justify-center relative">
+
+                {/*Overlay execution*/}
                 {!isOverlay && (
-                    <AuthOverlay setIsOverlay={setOverlay} text={"Don't have an account?"} value={"Sign up"} />
+                    <AuthOverlay setIsOverlay={setOverlay} text={"Don't have an account?"} value={"Sign up"}/>
                 )}
                 <div className="w-full p-6 max-w-sm bg-white rounded-lg shadow-md rounded-r-none">
                     <h1 className="text-center font-semibold text-black text-4xl m-8">Sign up</h1>
                     <Formik
-                        initialValues={{ fullName: '', phoneNumberOrEmail: '', password: '', dateOfBirth: '', gender: '' }}
+                        initialValues={{
+                            fullName: '',
+                            phoneNumberOrEmail: '',
+                            password: '',
+                            dateOfBirth: '',
+                            gender: '',
+                            agreement: false
+                        }}
                         validationSchema={validationSchema}
                         onSubmit={(values) => {
                             console.log(values);
                         }}
                     >
-                        {({ handleChange, values }) => (
+                        {({handleChange, values,handleBlur,errors, touched}) => (
                             <Form className="space-y-4">
                                 {/* Full Name */}
                                 <div>
@@ -101,6 +117,11 @@ export default function SignUpPage() {
                                         name="fullName"
                                         onChange={handleChange}
                                         value={values.fullName}
+                                        className={
+                                            errors.fullName && touched.fullName
+                                                ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
+                                                : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+                                        }
                                     />
                                     <ErrorMessage name="fullName" component="div"
                                                   className="text-red-500 text-sm mb-2"/>
@@ -114,6 +135,11 @@ export default function SignUpPage() {
                                         name="phoneNumberOrEmail"
                                         onChange={handleChange}
                                         value={values.phoneNumberOrEmail}
+                                        className={
+                                            errors.phoneNumberOrEmail && touched.phoneNumberOrEmail
+                                                ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
+                                                : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+                                        }
                                     />
                                     <ErrorMessage name="phoneNumberOrEmail" component="div"
                                                   className="text-red-500 text-sm mb-2"/>
@@ -127,6 +153,11 @@ export default function SignUpPage() {
                                         name="password"
                                         onChange={handleChange}
                                         value={values.password}
+                                        className={
+                                            errors.password && touched.password
+                                                ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
+                                                : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+                                        }
                                     />
                                     <ErrorMessage name="password" component="div"
                                                   className="text-red-500 text-sm mb-2"/>
@@ -141,6 +172,12 @@ export default function SignUpPage() {
                                         name="dateOfBirth"
                                         onChange={handleChange}
                                         value={values.dateOfBirth}
+                                        className={
+                                            errors.dateOfBirth && touched.dateOfBirth
+                                                ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
+                                                : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+                                        }
+
                                     />
                                     <ErrorMessage name="dateOfBirth" component="div"
                                                   className="text-red-500 text-sm mb-2"/>
@@ -149,90 +186,153 @@ export default function SignUpPage() {
                                 {/* Gender */}
                                 <div>
                                     <span className="text-black block ml-2 mb-2">Select Gender</span>
-                                    <Field as="select" name="gender"
-                                           className=" text-black form-select bg-[#E9ECEF] w-full p-2 border rounded-lg">
+                                    <select name="gender"
+                                            onChange={handleChange}
+                                            value={values.gender}
+                                           className={`text-black bg-[#E9ECEF] w-full p-2 border rounded-lg ${errors.gender && touched.gender
+                                               ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
+                                               : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+                                           }}`}>
                                         <option value="">Select gender</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                         <option value="other">Other</option>
-                                    </Field>
+                                    </select>
                                     <ErrorMessage name="gender" component="div" className="text-red-500 text-sm mb-2"/>
                                 </div>
 
+                                {/*Agreement*/}
                                 <div>
                                     <div className="flex w-full items-center space-x-2">
                                         <input type="checkbox" name="agreement"
+                                               onChange={handleChange}
+                                               checked={values.agreement}
                                                className="form-checkbox text-blue-600"/>
                                         <span className="text-black text-sm py-2">I agree to <a href="#">the Terms of Service</a>, <a
                                             href="#">Privacy Policy</a>, and <a href="#">Cookie Policy</a></span>
                                     </div>
+                                    <ErrorMessage name="agreement" component="div"
+                                                  className="text-red-500 text-sm mb-2"/>
+
                                 </div>
-                                <AuthButtonComponent text={"Sign Up"}/>
+                                <AuthButtonComponent text={"Sign Up"} onClick={() => setIsSignUpClicked(true)}/>
+                                {/*Other options*/}
+                                <div className="flex items-center">
+                                    <span className="flex-grow border-t border-gray-300"></span>
+                                    <p className="text-center text-black text-sm mx-4 ">Or Sign Up Using</p>
+                                    <span className="flex-grow border-t border-gray-300"></span>
+                                </div>
+
+                                {/*Button submit to sign up with Google*/}
+                                <Button
+                                    color="#D96E48"
+                                    pill
+                                    className="w-full p-0 border-none flex items-center bg-[#E9ECEF] justify-center hover:bg-[#f1f3f5]"
+                                >
+                                    <img src={google_icon} alt="Google icon" className="mr-1 h-10 w-10"/>
+                                    <span className="text-[#000000] flex items-center">Continue with Google</span>
+                                </Button>
                             </Form>
                         )}
                     </Formik>
 
-                    <div className="flex items-center">
-                        <span className="flex-grow border-t border-gray-300"></span>
-                        <p className="text-center text-black text-sm mx-4 my-4">Or Sign Up Using</p>
-                        <span className="flex-grow border-t border-gray-300"></span>
-                    </div>
-                    <Button
-                        color="#D96E48"
-                        pill
-                        className="w-full p-0 border-none flex items-center bg-[#E9ECEF] justify-center hover:bg-[#f1f3f5]"
-                    >
-                        <img src={google_icon} alt="Google icon" className="mr-1 h-10 w-10" />
-                        <span className="text-[#000000] flex items-center">Continue with Google</span>
-                    </Button>
+
                 </div>
             </div>
 
             {/* Login */}
             <div className="flex items-center justify-center relative">
+
+                {/*Overlay execution*/}
                 {isOverlay && (
-                    <AuthOverlay setIsOverlay={setOverlay} text={"Have an account?"} value={"Log in"} />
+                    <AuthOverlay setIsOverlay={setOverlay} text={"Have an account?"} value={"Log in"}/>
                 )}
-                <div className="w-full max-w-sm p-6 bg-white rounded-lg rounded-l-none h-full shadow-md items-center flex flex-col">
+
+                <div
+                    className="w-full max-w-sm p-6 bg-white rounded-lg rounded-l-none h-full shadow-md items-center">
                     <h1 className="text-center font-semibold text-black text-4xl m-8">Log In</h1>
-                    <form className="space-y-4">
-                        <input
-                            type="text"
-                            className="text-black bg-[#E9ECEF] w-full h-[60px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500 mb-2"
-                            placeholder="Phone number or email"
-                        />
-                        <input
-                            type="password"
-                            className="text-black bg-[#E9ECEF] w-full h-[60px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
-                            placeholder="Password"
-                        />
+                    <Formik initialValues={{phoneNumberOrEmail: '', password: ''}}
+                            validationSchema={validationSchema}
+                            onSubmit={(values) => {
+                                console.log(values);
+                            }}
+                    >
+                        {({handleChange, values,errors, touched}) => (
+                            <Form className="space-y-4">
 
-                        <div className="flex items-center">
-                            <input type="checkbox" className="mr-2 " />
-                            <span className="text-[#495057] text-sm">Remember me</span>
-                        </div>
-                        <AuthButtonComponent text={"Log In"} />
+                                {/* Phone number or email */}
+                                <div>
+                                    <InputComponent
+                                        text={"Phone number or email"}
+                                        type={"text"}
+                                        name="phoneNumberOrEmail"
+                                        onChange={handleChange}
+                                        value={values.phoneNumberOrEmail}
+                                        className={
+                                            errors.phoneNumberOrEmail && touched.phoneNumberOrEmail
+                                                ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
+                                                : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+                                        }
+                                    />
+                                    <ErrorMessage name="phoneNumberOrEmail" component="div"
+                                                  className="text-red-500 text-sm mb-2"/>
+                                </div>
 
-                        <div className="flex items-center">
-                            <span className="flex-grow border-t border-gray-300"></span>
-                            <p className="text-center text-black text-sm mx-4">Or Log In Using</p>
-                            <span className="flex-grow border-t border-gray-300"></span>
-                        </div>
+                                {/* Password */}
+                                <div>
+                                    <InputComponent
+                                        text={"Password"}
+                                        type={"password"}
+                                        name="password"
+                                        onChange={handleChange}
+                                        value={values.password}
+                                        className={
+                                            errors.password && touched.password
+                                                ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
+                                                : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+                                        }
+                                    />
+                                    <ErrorMessage name="password" component="div"
+                                                  className="text-red-500 text-sm mb-2"/>
+                                </div>
 
-                        <Button
-                            color="#D96E48"
-                            pill
-                            className="w-full p-0 border-none flex items-center bg-[#E9ECEF] justify-center hover:bg-[#f1f3f5]"
-                        >
-                            <img src={google_icon} alt="Google icon" className="mr-1 h-10 w-10" />
-                            <span className="text-[#000000] flex items-center">Continue with Google</span>
-                        </Button>
-                    </form>
+                                {/*Remember me*/}
+                                <div className="flex items-center">
+                                    <input type="checkbox" className="mr-2 "/>
+                                    <span className="text-[#495057] text-sm">Remember me</span>
+                                </div>
+
+                                {/*Button submit to login*/}
+                                <AuthButtonComponent text={"Log In"}/>
+
+                                {/*Other options*/}
+                                <div className="flex items-center">
+                                    <span className="flex-grow border-t border-gray-300"></span>
+                                    <p className="text-center text-black text-sm mx-4">Or Log In Using</p>
+                                    <span className="flex-grow border-t border-gray-300"></span>
+                                </div>
+
+                                {/*Button submit to login with Google*/}
+                                <Button
+                                    color="#D96E48"
+                                    pill
+                                    className="w-full p-0 border-none flex items-center bg-[#E9ECEF] justify-center hover:bg-[#f1f3f5]"
+                                >
+                                    <img src={google_icon} alt="Google icon" className="mr-1 h-10 w-10"/>
+                                    <span className="text-[#000000] flex items-center">Continue with Google</span>
+                                </Button>
+                            </Form>
+                        )}
+
+                    </Formik>
+
+                    {/*Forgot password*/}
                     <p className="text-center mt-6">
                         <a href="#" className=" text-[#D96E48] hover:text-[#f29849] hover:no-underline">
                             Forgot password?
                         </a>
                     </p>
+
                 </div>
             </div>
         </div>
