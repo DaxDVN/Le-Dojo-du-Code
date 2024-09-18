@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import AuthLoginForm from "../components/AuthLoginForm.tsx";
 import AuthRegisterForm from "../components/AuthRegisterForm.tsx";
-import AuthOverlay from "../components/AuthOverlay.tsx";
 
-function AuthenticationPage(props) {
+function AuthenticationPage() {
     // Overlay
     const [overlay, setIsOverlay] = useState(true);
     const setOverlay = () => {

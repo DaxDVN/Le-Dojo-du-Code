@@ -89,4 +89,12 @@ export const loginValidationSchema = Yup.object().shape({
         .matches(/\d/, )    //'Password requires at least one number.'
         .matches(/[!@#$%^&*(),.?":{}|<>]/, ) //'Password requires at least one special character.'
         .required('Password is required.'),
+
+    // Enter code
+
+});
+export const enterCode = Yup.object().shape({
+    emailCode: Yup.string()
+        .length(6,'Enter code must be exactly 6 characters')
+        .required('Please enter the code sent to your email.'),
 });

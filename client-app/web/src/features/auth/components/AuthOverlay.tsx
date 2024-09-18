@@ -1,5 +1,6 @@
 import {Button} from "flowbite-react";
 import {CommonProps} from "../interfaces/CommonProps.ts";
+import React from "react";
 
 function AuthOverlay({onSetValue, text, value}: CommonProps) {
     return (

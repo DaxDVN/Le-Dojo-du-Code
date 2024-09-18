@@ -1,25 +1,20 @@
-import {useState} from "react";
+import React, {ChangeEvent} from "react";
 
-function FormInput({text, type,name, ...props }) {
-    const [value, setValue] = useState("");
+interface Props {
+    text?:string,
+    type?:string ,
+    name?:string,
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void,
+    value?:string,
+    errorCase?:string
+}
 
-    const handleChange = (event) => {
-        const { value } = event.target;
-        setValue(value);
-
-        if (value.includes("@")) {
-            console.log("Email entered:", value);
-        } else {
-            console.log("Phone number entered:", value);
-        }
-    };
+function FormInput({text, type,name, errorCase, ...props } : Props) {
     return (
         <input
             type={type}
             name={name}
-            value={value}
-            onChange={handleChange}
-            className="text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
+            className={`text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500 ${errorCase}`}
             placeholder={text}
             {...props}
         />

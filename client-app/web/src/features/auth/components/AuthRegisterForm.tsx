@@ -7,13 +7,15 @@ import {Button} from "flowbite-react";
 import google_icon from "../../../assets/images/google.svg";
 import {OverlayProps} from "../interfaces/CommonProps.ts";
 import AuthOverlay from "./AuthOverlay.tsx";
+import {Link, useNavigate} from "react-router-dom";
 
 
 function AuthRegisterForm({overlay, setOverlay}: OverlayProps) {
+    const navigate = useNavigate();
     return (
         <div className="relative h-full w-full min-w-max max-w-sm rounded-lg bg-white p-6 shadow-lg">
             {!overlay && (
-                <AuthOverlay onSetValue={setOverlay} text={"Do you have an account?"} value={"Login"}/>
+                <AuthOverlay onSetValue={setOverlay} text={"Don't have an account?"} value={"Sign up"}/>
             )}
             <h1 className="mb-8 text-center text-4xl font-semibold text-black">Sign up</h1>
             <Formik
@@ -26,8 +28,9 @@ function AuthRegisterForm({overlay, setOverlay}: OverlayProps) {
                     agreement: false
                 }}
                 validationSchema={registerValidationSchema}
-                onSubmit={(values) => {
+                onSubmit={( values) => {
                     console.log(values);
+                    navigate("/verify", {state: {user: values}})
                 }}
             >
                 {({handleChange, values, errors, touched}) => (
@@ -40,7 +43,7 @@ function AuthRegisterForm({overlay, setOverlay}: OverlayProps) {
                                 name="fullName"
                                 onChange={handleChange}
                                 value={values.fullName}
-                                className={
+                                errorCase={
                                     errors.fullName && touched.fullName
                                         ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
                                         : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
@@ -58,7 +61,7 @@ function AuthRegisterForm({overlay, setOverlay}: OverlayProps) {
                                 name="phoneNumberOrEmail"
                                 onChange={handleChange}
                                 value={values.phoneNumberOrEmail}
-                                className={
+                                errorCase={
                                     errors.phoneNumberOrEmail && touched.phoneNumberOrEmail
                                         ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
                                         : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
@@ -77,7 +80,7 @@ function AuthRegisterForm({overlay, setOverlay}: OverlayProps) {
                                     name="password"
                                     onChange={handleChange}
                                     value={values.password}
-                                    className={
+                                    errorCase={
                                         errors.password && touched.password
                                             ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
                                             : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
@@ -95,7 +98,7 @@ function AuthRegisterForm({overlay, setOverlay}: OverlayProps) {
                                     name="dateOfBirth"
                                     onChange={handleChange}
                                     value={values.dateOfBirth}
-                                    className={
+                                    errorCase={
                                         errors.dateOfBirth && touched.dateOfBirth
                                             ? "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border border-red-500 rounded-2xl focus:outline-none focus:border-blue-500"
                                             : "text-black bg-[#E9ECEF] w-full h-[52px] px-6 py-2 border rounded-2xl focus:outline-none focus:border-blue-500"
@@ -132,19 +135,18 @@ function AuthRegisterForm({overlay, setOverlay}: OverlayProps) {
                                            onChange={handleChange}
                                            checked={values.agreement}
                                            className="text-blue-600 form-checkbox"/>
-                                    <span className="py-2 text-black text-[12px]">I agree to <a href="#">the Terms of Service</a>, <a
-                                        href="#">Privacy Policy</a>, and <a href="#">Cookie Policy</a></span>
+                                    <span className="py-2 text-black text-[12px]">I agree to <Link to="#">the Terms of Service</Link>, <Link
+                                        to="#">Privacy Policy</Link>, and <Link to="#">Cookie Policy</Link></span>
                                 </div>
                                 <ErrorMessage name="agreement" component="div"
                                               className="mb-2 text-red-500 text-[12px]"/>
-
                             </div>
                         </div>
-
+                        <FormButton text={"Sign Up"}/>
                     </Form>
+
                 )}
             </Formik>
-            <FormButton text={"Sign Up"}/>
 
             {/*Other options*/}
             <div className="mt-4 mb-4 flex items-center">

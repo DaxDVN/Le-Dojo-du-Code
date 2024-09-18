@@ -1,8 +1,12 @@
+import React from 'react';
 import complete from '../../../assets/images/complete.svg'
 import FormButton from './FormButton.tsx';
+import {Link, useLocation} from "react-router-dom";
 
 export default function AuthPopup() {
-
+    const location = useLocation();
+    const { emailCode } = location.state;
+    console.log(emailCode)
     return (
         <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-full max-w-sm p-12 space-y-4 bg-white rounded-lg shadow-md flex flex-col items-center">
@@ -13,7 +17,9 @@ export default function AuthPopup() {
                         Success! Your email has been verified.
                     </p>
                 </div>
-                <FormButton text='Continue'/>
+                <Link to={'/'} className={'w-full'}>
+                    <FormButton text='Continue'/>
+                </Link>
             </div>
         </div>
     );
