@@ -6,6 +6,8 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="native\android\" />
+    <Folder Include="native\ios\" />
     <Folder Include="web\src\assets\images\" />
   </ItemGroup>
 </Project>
