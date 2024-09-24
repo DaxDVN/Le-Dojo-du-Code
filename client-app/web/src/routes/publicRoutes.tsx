@@ -4,6 +4,7 @@ import AuthenticationPage from "../features/auth/containers/AuthenticationPage.t
 import React from 'react';
 import VerificationPage from "../features/auth/containers/VerificationPage.tsx";
 import AuthPopup from "../features/auth/components/AuthPopup.tsx";
+import Homepage from "../features/home/Homepage.tsx";
 
 export const publicRoutes: RouteObject[] = [
     // {
@@ -30,5 +31,9 @@ export const publicRoutes: RouteObject[] = [
     {
         path: "/verify/complete",
         element: <AuthPopup/>
+    },
+    {
+        path: "/home",
+        element: <Homepage/>
     },
 ];
