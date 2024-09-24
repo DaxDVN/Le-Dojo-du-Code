@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 
-function ExampleFeatureComponent(props) {
+function ExampleFeatureComponent() {
     return (
         <div></div>
     );
